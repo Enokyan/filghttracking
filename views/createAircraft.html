@@ -1,0 +1,35 @@
+<div ng-include="'views/layout/main.html'"></div>
+    <!--<section class="content">-->
+        <div  class="col-md-4">
+            <!--<div class="myform col-xs-12" >-->
+                <center><h2>Name</h2></center> <input class="form-control"  type="text" ng-model="name" placeholder="name"><br>
+                <center><h2>Model </h2></center><input class="form-control"  type="text" ng-model="model"  placeholder="model"><br>
+                <center><h2>Manufacturer </h2></center><input class="form-control"  type="text" ng-model="manufacturer"  placeholder="manufacturer"><br>
+                <center><h2>Classification </h2></center><input class="form-control"  type="text" ng-model="classification"  placeholder="classification"><br>
+        </div>
+        <div style="float:left" class="col-md-4">
+
+
+                <center><h2>Seats </h2></center><input class="form-control"  type="text" ng-model="seats"  placeholder="seats"><br>
+                <center><h2>Speed </h2></center><input class="form-control"  type="number" ng-model="speed" placeholder="speed"><br>
+                <center><h2>Range </h2></center><input class="form-control"  type="number" ng-model="range" placeholder="range"><br>
+                <center><h2>Range_norm </h2></center><input class="form-control"  type="number" ng-model="range_norm" placeholder="range_norm"><br>
+            </div>
+            <div  class="col-md-4">
+
+
+                <center><h2>Height </h2></center><input class="form-control"  type="number" ng-model="height" placeholder="height"><br>
+                <center><h2>Width </h2></center><input class="form-control"  type="number" ng-model="width" placeholder="width"><br>
+                <center><h2>Image  <img  ng-src="{{image}}" alt="" width="50px"> </h2></center>
+                <input  class="form-control"  type="file" onchange="angular.element(this).scope().Upload(event)">
+
+                    <br><br><br><br>
+
+                <center><button ng-click="insert()"  class="btn btn-success form-control" ng-show="!t">Insert</button></center>
+
+                <br><br><br>
+
+            </div>
+
+    <!--</section>-->
+
