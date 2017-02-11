@@ -14,38 +14,16 @@ loginApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('create', {
             url: '/create',
-            templateUrl: 'views/createAircraft.html',
+            templateUrl: 'views/Aircrafts/createAircraft.html',
             controller: 'CreateCtrl'
+        })
+        .state('showAircraft', {
+            url: '/showAircraft',
+            templateUrl: 'views/Aircrafts/showAircraft.html',
+            controller: 'ShowAircraftCtrl'
         });
 
 
 });
-
-
-
-// loginApp.config(['$routeProvider', function($routeProvider) {
-//     //
-//     // $routeProvider.when('/', {
-//     //     templateUrl: 'views/home.html',
-//     //     controller: 'homeCtrl'
-//     // });
-//
-//     $routeProvider.when('/login', {
-//         templateUrl: 'views/examples/login.html'
-//     });
-
-//     $routeProvider.when('/aircraft', {
-//         templateUrl: 'views/aircraft.html',
-//         controller: 'aircraftCtrl'
-//     });
-//
-//     $routeProvider.when('/create', {
-//         templateUrl: '../../views/createAircraft.html',
-//         controller: 'CreateCtrl'
-//     });
-//     // $urlRouterProvider.otherwise('/error404');
-// }]);
-
-
 
 

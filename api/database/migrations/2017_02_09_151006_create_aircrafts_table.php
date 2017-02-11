@@ -11,7 +11,6 @@ class CreateAircraftsTable extends Migration
     {
         Schema::create('aircrafts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('img_prof');
             $table->string('name');
             $table->string('model');
             $table->string('manufacturer');

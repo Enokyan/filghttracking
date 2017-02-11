@@ -1,18 +1,12 @@
-
 loginApp.controller('CreateCtrl', function($scope,$http) {
+
+    /* cretae database m aircraft*/
     $scope.insert = function () {
-
-        // $scope.data = result;
-        // if ($scope.name && $scope.type && $scope.age) {
-        //     $scope.data.results.push({
-        //         name: $scope.name,
-        //         type: $scope.type,
-        //         age: $scope.age
-        //     });
-
-
             formData = new FormData();
-            formData.append('file', $scope.myfile);
+            for (var i = 0; i < $scope.myfile.length; i++) {
+                file = $scope.myfile.item(i);
+                formData.append('file[]', file);
+            }
             formData.append('name', $scope.name);
             formData.append('model', $scope.model);
             formData.append('manufacturer', $scope.manufacturer);
@@ -24,7 +18,6 @@ loginApp.controller('CreateCtrl', function($scope,$http) {
             formData.append('height', $scope.height);
             formData.append('width', $scope.width);
 
-            console.log($scope.myfile);
             $http({
                 url: 'api/public/api/v1/createAircraft',
                 method: "POST",
@@ -33,7 +26,16 @@ loginApp.controller('CreateCtrl', function($scope,$http) {
 
             });
 
-            // $scope.name = '';
-        // }
+            $scope.name = '';    $scope.model = '';  $scope.manufacturer = '';  $scope.classification = ''; $scope.seats = '';   $scope.speed = '';
+            $scope.range = '';   $scope.range_norm = '';    $scope.height = '';     $scope.width = '';
+
+    };
+    /* create i uploade file*/
+    $scope.Upload = function(event){
+        if(event.target.files) {
+            var files = event.target.files;
+            var hatsData = angular.toJson(files);
+            $scope.myfile = files;
+        }
     };
 });

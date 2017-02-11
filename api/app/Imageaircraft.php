@@ -12,6 +12,6 @@ class Imageaircraft extends Model
 
     public function aircraft(){
 
-        return $this->belongsTo('App\Aircraft');
+        return $this->belongsTo('App\Aircraft', 'aircraft_id');
     }
 }

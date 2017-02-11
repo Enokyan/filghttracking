@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Aircrafttype;
 use Illuminate\Http\Request;
-//use App\Aircrafttype;
-//use SoapClient;
 
 use App\Aircraft;
+use App\Imageaircraft;
+use Illuminate\Support\Facades\File;
 
 class AircraftController extends Controller
 {
-//    public function index(){
-//        $aircrafts = Aircrafttype::get();
-//
-//        if($aircrafts){
-//            return response()->json(compact('aircrafts'));
-//        }
-//        else{
-//            return response()->json(['error' => 'null']);
-//        }
-//    }
-//
+    //////////showAircraft/////////////
+    public function index(){
+        $aircrafts = Aircraft::with('images')->get();
+//        dd($aircrafts);
+        return response()->json(compact('aircrafts'));
+
+    }
+////
 //    public function aircrafttype(Request $request){
 //
 //        $type  = $request->type;
@@ -45,9 +41,8 @@ class AircraftController extends Controller
 //
 //    }
 
-
+    /////////insert aircraft i images aircraft///////////
     public function createAircraft(Request $request){
-//$result = $request->all();
         $name = $request->input('name');
         $model = $request->input('model');
         $manufacturer = $request->input('manufacturer');
@@ -58,19 +53,8 @@ class AircraftController extends Controller
         $range_norm = $request->input('range_norm');
         $height = $request->input('height');
         $width = $request->input('width');
-//dd($name);
-        if(isset($_FILES['file'])){
-            $file = $_FILES['file'];
-            $filePath = $file['tmp_name'];
-            $filename = $file['name'];
-            Image::make($filePath)->save(public_path('img/') . $filename);
-            $img_prof = $filename;
-        } else
-            $img_prof = 'null';
-
 
         $newAircraft = Aircraft::create([
-            'img_prof'         => $img_prof,
             'name'             => $name,
             'model'            => $model,
             'manufacturer'     =>  $manufacturer,
@@ -82,8 +66,20 @@ class AircraftController extends Controller
             'height'           =>  $height,
             'width'            =>  $width,
         ]);
-
-        return response()->json(compact('newAircraft'));
+        if(isset($request->file)){
+            $files = $request->file;
+            $img_names = [];
+            foreach ($files as $file) {
+                $imgRenamed = 'aircraft_'.str_random(10).'.'.$file->getClientOriginalExtension();
+                $img_names[]=[
+                    'aircraft_id' =>$newAircraft->id,
+                    'imageAircrafts' =>$imgRenamed
+                ];
+                $file->move(config('Constants.upload_url'), $imgRenamed);
+            }
+            $AircraftImages = Imageaircraft::insert($img_names);
+        }
+        return response()->json(compact('newAircraft','AircraftImages'));
     }
 
 }

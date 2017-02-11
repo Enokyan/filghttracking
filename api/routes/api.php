@@ -11,5 +11,5 @@ Route::get('/user', function (Request $request) {
 
 Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
 Route::post('authenticate', 'AuthenticateController@authenticate');
-//Route::post('aircrafttype', 'AircraftController@index');
 Route::post('createAircraft', 'AircraftController@createAircraft');
+Route::post('showAircraft', 'AircraftController@index');
