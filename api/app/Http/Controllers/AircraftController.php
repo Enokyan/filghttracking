@@ -13,7 +13,6 @@ class AircraftController extends Controller
     //////////showAircraft/////////////
     public function index(){
         $aircrafts = Aircraft::with('images')->get();
-//        dd($aircrafts);
         return response()->json(compact('aircrafts'));
 
     }
@@ -82,4 +81,13 @@ class AircraftController extends Controller
         return response()->json(compact('newAircraft','AircraftImages'));
     }
 
+    public function deleteAircraft(Request $request){
+        $result = $request->all();
+        dd($result);
+//        $id = $result['id'];
+//        dd($id);
+//        $deletedRows = Aircraft::where('id', $id)->delete();
+//        return response()->json(compact('deletedRows'));
+
+    }
 }

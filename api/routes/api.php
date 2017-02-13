@@ -13,3 +13,4 @@ Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']])
 Route::post('authenticate', 'AuthenticateController@authenticate');
 Route::post('createAircraft', 'AircraftController@createAircraft');
 Route::post('showAircraft', 'AircraftController@index');
+Route::post('deleteAircraft', 'AircraftController@deleteAircraft');
